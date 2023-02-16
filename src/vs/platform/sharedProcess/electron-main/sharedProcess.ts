@@ -26,7 +26,6 @@ import { IUserDataProfilesService } from 'vs/platform/userDataProfile/common/use
 import { IPolicyService } from 'vs/platform/policy/common/policy';
 import { ILoggerMainService } from 'vs/platform/log/electron-main/loggerService';
 import { UtilityProcess } from 'vs/platform/utilityProcess/electron-main/utilityProcess';
-import { IConfigurationService } from 'vs/platform/configuration/common/configuration';
 import { NullTelemetryService } from 'vs/platform/telemetry/common/telemetryUtils';
 import { deepClone } from 'vs/base/common/objects';
 import { removeDangerousEnvVariables } from 'vs/base/common/processes';
@@ -42,7 +41,7 @@ export class SharedProcess extends Disposable implements ISharedProcess {
 	private windowCloseListener: ((event: ElectronEvent) => void) | undefined = undefined;
 
 	private utilityProcess: UtilityProcess | undefined = undefined;
-	private readonly useUtilityProcess = this.configurationService.getValue<boolean>('window.experimental.sharedProcessUseUtilityProcess');
+	private readonly useUtilityProcess = true;
 
 	constructor(
 		private readonly machineId: string,
@@ -54,8 +53,7 @@ export class SharedProcess extends Disposable implements ISharedProcess {
 		@ILoggerMainService private readonly loggerMainService: ILoggerMainService,
 		@IPolicyService private readonly policyService: IPolicyService,
 		@IThemeMainService private readonly themeMainService: IThemeMainService,
-		@IProtocolMainService private readonly protocolMainService: IProtocolMainService,
-		@IConfigurationService private readonly configurationService: IConfigurationService
+		@IProtocolMainService private readonly protocolMainService: IProtocolMainService
 	) {
 		super();
 
