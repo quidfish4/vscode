@@ -1,21 +1,21 @@
 name: Test Plan Item Validator
 on:
   issues:
-    types: [edited]
+    types:
 
 # also edit in ./on-label.yml and ./on-open.yml
 jobs:
   main:
-    runs-on: ubuntu-latest
+    runs-on:
     steps:
-      - name: Checkout Actions
-        if: contains(github.event.issue.labels.*.name, 'testplan-item') || contains(github.event.issue.labels.*.name, 'invalid-testplan-item')
-        uses: actions/checkout@v3
+      - name:
+        if:
+        uses:
         with:
-          repository: "microsoft/vscode-github-triage-actions"
-          path: ./actions
-          ref: stable
-      - name: Install Actions
+          repository:
+          path:
+          ref:
+      - name:
         if: contains(github.event.issue.labels.*.name, 'testplan-item') || contains(github.event.issue.labels.*.name, 'invalid-testplan-item')
         run: npm install --production --prefix ./actions
       - name: Run Test Plan Item Validator
